@@ -52,6 +52,27 @@ namespace ArvoreBinaria
             }
         }
 
+        public bool valorExiste(int valor, No? noAtual = null)
+        {
+            if(noAtual == null)
+            {
+                noAtual = _Raiz;
+            }
+            if (noAtual.getValor() == valor)
+            {
+                return true;
+            }
+            if (valor <= noAtual.getValor())
+            {
+                return valorExiste(valor, noAtual.getFilhoEsq());
+            }
+            if(valor > noAtual.getValor())
+            {
+                return valorExiste(valor, noAtual.getFilhoDir());                                     
+            }
+            return false;
+        }
+
         public String preOrdem(No? noAtual = null)
         {
             String itens = "";
