@@ -110,5 +110,84 @@ namespace ArvoreBinaria
             itens = itens + noAtual.getValor() + "-";
             return itens;
         }
+
+        public void delete(int valor)
+        {
+            No noRemocao = buscaNo(valor);
+            No noPai = buscaPai(valor);
+
+            //CASO NO SEJA FOLHA
+            if (noRemocao.ehFolha())
+            {               
+                if(noPai.getFilhoEsq().getValor() == valor)
+                {
+                    noPai.setFilhoEsq(null);
+                }else if (noPai.getFilhoDir().getValor() == valor)
+                {
+                    noPai.setFilhoDir(null);
+                }          
+            }
+            //CASO NO TENHA SOMENTE UM FILHO
+            if (noRemocao.temFilhoEsq() && !noRemocao.temFilhoDir())
+            {
+                noPai.setFilhoDir(noRemocao.getFilhoEsq());
+            }
+            else if (noRemocao.temFilhoDir() && !noRemocao.temFilhoEsq())
+            {
+                noPai.setFilhoEsq(noRemocao.getFilhoDir());
+            }
+        }
+
+        private No buscaNo(int valor, No? noAtual = null)
+        {
+            if (noAtual == null)
+            {
+                noAtual = _Raiz;
+            }
+            if (noAtual.getValor() == valor)
+            {
+                return noAtual;
+            }
+            if (valor <= noAtual.getValor())
+            {
+                return buscaNo(valor, noAtual.getFilhoEsq());
+            }
+            if (valor > noAtual.getValor())
+            {
+                return buscaNo(valor, noAtual.getFilhoDir());
+            }
+            return null;
+        }
+
+        private No buscaPai(int valor, No? noAtual = null)
+        {
+            if (noAtual == null)
+            {
+                noAtual = _Raiz;
+            }
+            if (valor <= noAtual.getValor())
+            {
+                if (noAtual.getFilhoEsq().getValor() == valor)
+                {
+                    return noAtual;
+                }
+                else
+                {
+                    return buscaPai(valor, noAtual.getFilhoEsq());
+                }
+            }
+            if(valor > noAtual.getValor())
+            {
+                if(noAtual.getFilhoDir().getValor() == valor)
+                {
+                    return noAtual;
+                }
+                else
+                {
+                   return buscaPai(valor, noAtual.getFilhoDir());
+                }
+            }
+            return null;
+        }
     }
 }

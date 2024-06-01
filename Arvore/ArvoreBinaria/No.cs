@@ -70,5 +70,16 @@ namespace ArvoreBinaria
             }
         }
 
+        public bool ehFolha()
+        {
+            if(this._FilhoEsq == null && this._FilhoDir == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
