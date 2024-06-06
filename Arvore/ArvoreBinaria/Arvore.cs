@@ -136,9 +136,32 @@ namespace ArvoreBinaria
             {
                 noPai.setFilhoEsq(noRemocao.getFilhoDir());
             }
+
+            //CASO NO TENHA DOIS FILHOS
+            if (noRemocao.temFilhoDir() && noRemocao.temFilhoEsq())
+            {
+                //AO BUSCA O NO SUCESSOR, PASSAR NO A DIREITA DO QUE ESTA PARA REMOCAO
+                No novoNo = buscaSucessor(valor, noRemocao.getFilhoDir());
+                
+            }
         }
 
-        private No buscaNo(int valor, No? noAtual = null)
+        private No buscaSucessor(int valor, No noAtual)
+        {
+            if (noAtual.temFilhoEsq())
+            {
+                No aux = noAtual.getFilhoEsq();
+                noAtual.setFilhoEsq(aux.getFilhoDir());
+                return aux;
+            }
+            if (noAtual.temFilhoDir())
+            {
+                buscaSucessor(valor, noAtual.getFilhoDir());
+            }
+            return null;
+        }
+
+        public No buscaNo(int valor, No? noAtual = null)
         {
             if (noAtual == null)
             {
