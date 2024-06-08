@@ -140,25 +140,49 @@ namespace ArvoreBinaria
             //CASO NO TENHA DOIS FILHOS
             if (noRemocao.temFilhoDir() && noRemocao.temFilhoEsq())
             {
-                //AO BUSCA O NO SUCESSOR, PASSAR NO A DIREITA DO QUE ESTA PARA REMOCAO
-                No novoNo = buscaSucessor(valor, noRemocao.getFilhoDir());
-                
+                //AO BUSCAR O NO SUCESSOR, PASSAR NO A DIREITA DO QUE ESTA PARA REMOCAO
+                No noSucessor = buscaSucessor(noRemocao.getFilhoDir());
+                Console.WriteLine($"No sucessor do {valor}: " + noSucessor.getValor());
+                //VERIFICA DE QUAL O FILHO, SE É O ESQUERDO OU DIREITO               
+                if (noPai.getFilhoDir().getValor() == valor)
+                {
+                    noPai.setFilhoDir(noSucessor);
+                    if (noRemocao.getFilhoEsq().getValor() != noSucessor.getValor())
+                    {
+                        noSucessor.setFilhoEsq(noRemocao.getFilhoEsq());
+                    }
+                    if (noRemocao.getFilhoDir().getValor() != noSucessor.getValor())
+                    {
+                        noSucessor.setFilhoDir(noRemocao.getFilhoDir());
+                    }
+                }
+                else
+                {
+                    noPai.setFilhoEsq(noSucessor);
+                    if (noRemocao.getFilhoEsq().getValor() != noSucessor.getValor())
+                    {
+                        noSucessor.setFilhoEsq(noRemocao.getFilhoEsq());
+                    }
+                    if (noRemocao.getFilhoDir().getValor() != noSucessor.getValor())
+                    {
+                        noSucessor.setFilhoDir(noRemocao.getFilhoDir());
+                    }                                    
+                }
             }
         }
 
-        private No buscaSucessor(int valor, No noAtual)
+        private No buscaSucessor(No? noAtual = null)
         {
             if (noAtual.temFilhoEsq())
             {
-                No aux = noAtual.getFilhoEsq();
-                noAtual.setFilhoEsq(aux.getFilhoDir());
-                return aux;
+                buscaSucessor(noAtual.getFilhoEsq());
             }
-            if (noAtual.temFilhoDir())
+            else
             {
-                buscaSucessor(valor, noAtual.getFilhoDir());
+                return noAtual;
             }
             return null;
+                                       
         }
 
         public No buscaNo(int valor, No? noAtual = null)

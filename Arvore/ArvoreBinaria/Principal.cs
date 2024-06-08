@@ -24,8 +24,8 @@ namespace ArvoreBinaria
             Console.WriteLine("Pre ordem: " + arvore.preOrdem());
             Console.WriteLine("Em ordem: " + arvore.emOrdem());
             Console.WriteLine("Pos ordem: " + arvore.posOrdem());
-            arvore.delete(57);
-            Console.WriteLine("57 removido: " + arvore.emOrdem());
+            arvore.delete(16);
+            Console.WriteLine("16 removido: " + arvore.emOrdem());
         }
     }
 }
