@@ -19,6 +19,8 @@ namespace ArvoreBinaria
             arvore.addItem(35);
             arvore.addItem(5);
             arvore.addItem(11);
+            arvore.addItem(2);
+            arvore.addItem(100);
             Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("Pre ordem: " + arvore.preOrdem());
@@ -27,7 +29,8 @@ namespace ArvoreBinaria
             arvore.delete(16);
             Console.WriteLine("16 removido: " + arvore.emOrdem());
             Console.WriteLine("Valor 5 Existe?: " + arvore.valorExiste(5));
-
+            Console.WriteLine("Maior " + arvore.buscaMaior().getValor());
+            Console.WriteLine("Menor " + arvore.buscaMenor().getValor());
         }
     }
 }

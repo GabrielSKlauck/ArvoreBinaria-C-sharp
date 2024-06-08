@@ -257,5 +257,37 @@ namespace ArvoreBinaria
             }
             return null;
         }
+
+        public No buscaMaior(No? noAtual = null)
+        {
+            if( noAtual == null)
+            {
+                noAtual = _Raiz;
+            }
+            if (noAtual.temFilhoDir())
+            {
+                return buscaMaior(noAtual.getFilhoDir());
+            }
+            else
+            {
+                return noAtual;
+            }            
+                        
+        }
+        public No buscaMenor(No? noAtual = null)
+        {
+            if(noAtual == null)
+            {
+                noAtual = _Raiz;
+            }
+            if (noAtual.temFilhoEsq())
+            {
+                return buscaMenor(noAtual.getFilhoEsq());
+            }
+            else
+            {
+                return noAtual;
+            }
+        }
     }
 }
